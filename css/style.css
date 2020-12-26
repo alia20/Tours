@@ -42,17 +42,24 @@ body{
 .logo {
     height:35px;
 
+
 }
+
 .text-box{
     position: absolute;
     top:50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    text-align: center;
     
 }
 .heading-primary{
     color: white;
     text-transform: uppercase;
+    margin-bottom:60px;
+
+    /* heading annimation shake fix */
+    backface-visibility: hidden;
 
 }
 .heading-primary-main{
@@ -60,6 +67,16 @@ body{
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
+    
+    /* animations for the heading main title */
+    animation-name: moveInLeft;
+    animation-duration: 5s;
+    animation-timing-function: ease-out;
+
+    /* animation-iteration-count: 3; */
+
+    /* animation-delay: 3s; */
+
 
 }
 .heading-primary-sub{
@@ -68,4 +85,104 @@ body{
     letter-spacing: 15px;
     display: block;
 
+    /* animation for sub header */
+    animation: moveInRight 1s ease-out;
 }
+/* heading annimations for title */
+@keyframes moveInLeft{
+   0%{
+       opacity:0;
+       transform: translateX(-100px);
+   }
+   80%{
+      transform: translateX(10px);
+   }
+   100%{
+       opacity:1;
+       transform: translateX(0);
+   }
+
+}
+
+/* heading annimations for sub title */
+@keyframes moveInRight{
+    0%{
+        opacity:0;
+        transform: translateX(100px);
+    }
+    80%{
+       transform: translateX(-10px);
+    }
+    100%{
+        opacity:1;
+        transform: translateX(0);
+    }
+ 
+ }
+/* animation for button */
+ @keyframes moveInBottom{
+    0%{
+        opacity:0;
+        transform: translateY(30px);
+    }
+    
+    100%{
+        opacity:1;
+        transform: translateX(0);
+    }
+ 
+ }
+
+ /* header button */
+ .btn:link, 
+ .btn:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    display: inline-block;
+    border-radius: 100px;
+    position: relative;
+    transition: all .2s;
+    
+ }
+.btn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+  
+}
+.btn:active{
+    transform: translateY(-1px);
+}
+
+ .btn-white{
+     background-color: white;
+     color: #777777;
+ }
+ /* after animation for button */
+ .btn::after{
+     content: "";
+     display: inline-block;
+     height:100%;
+     width:100%;
+     border-radius: 100px;
+     position: absolute;
+     top:0px;
+     left:0px;
+     z-index: -1;
+     transition: all .4s;
+ }
+
+ .btn-white::after{
+     background-color: white;
+ }
+ .btn:hover::after{
+     transform: scaleX(1.5) scaleY(2);
+     opacity: 0;
+ }
+ .btn-animated{
+     animation: moveInBottom .5s ease-out .75s;
+     
+     /* to set button animation to move from bootm to top */
+     animation-fill-mode: backwards;
+
+ }
